@@ -7,9 +7,8 @@ import es.upsa.dasi.web.application.clientes.FindClienteByIdUseCase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.*;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
@@ -55,6 +54,33 @@ public class ClientesResource
         return Response.ok("/jsps/clientes/cliente.jsp").build();
     }
 
+    @PUT
+    @Path("/{id}")
+    @UriRef("updatePeliculaById")
+    @Controller
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response updateClienteById (@PathParam("id") String id)
+    {
+        return Response.ok().build();
+    }
+
+    @POST
+    @UriRef("insertCliente")
+    @Controller
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response insertCliente()
+    {
+        return null;
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @UriRef("deleteClienteById")
+    @Controller
+    public Response deleteClienteById(@PathParam("id") String id)
+    {
+        return null;
+    }
 
 
 
