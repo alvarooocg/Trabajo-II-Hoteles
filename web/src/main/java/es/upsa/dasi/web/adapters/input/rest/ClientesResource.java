@@ -1,18 +1,26 @@
 package es.upsa.dasi.web.adapters.input.rest;
 
+import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.ClienteDto;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Cliente;
 import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelesAppException;
+import es.upsa.dasi.web.adapters.input.rest.dtos.Action;
+import es.upsa.dasi.web.adapters.input.rest.dtos.ClienteForm;
+import es.upsa.dasi.web.adapters.input.rest.mappers.Mappers;
 import es.upsa.dasi.web.application.clientes.FindAllClientesUseCase;
 import es.upsa.dasi.web.application.clientes.FindClienteByIdUseCase;
+import es.upsa.dasi.web.application.clientes.UpdateClienteByIdUseCase;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.*;
+import jakarta.mvc.binding.BindingResult;
+import jakarta.mvc.binding.ParamError;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @ApplicationScoped
@@ -23,13 +31,19 @@ public class ClientesResource
     Models models;
 
     @Inject
-    MvcContext mvc;
-
-    @Inject
     FindAllClientesUseCase findAllClientesUseCase;
 
     @Inject
     FindClienteByIdUseCase findClienteByIdUseCase;
+
+    @Inject
+    UpdateClienteByIdUseCase updateClienteByIdUseCase;
+
+    @Inject
+    MvcContext mvc;
+
+    @Inject
+    BindingResult bindingResult;
 
     @GET
     @Controller
@@ -59,9 +73,50 @@ public class ClientesResource
     @UriRef("updatePeliculaById")
     @Controller
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response updateClienteById (@PathParam("id") String id)
+    public Response updateClienteById (@PathParam("id") String id, @Valid @BeanParam ClienteForm clienteForm) throws HotelesAppException
     {
-        return Response.ok().build();
+        try
+        {
+            ClienteDto clienteDto = Mappers.toClienteDto(clienteForm);
+            if (bindingResult.isFailed())
+            {
+                ParamError p;
+                Map<String, List<String>> errores = new HashMap<>();
+                Set<ParamError> allErrors = bindingResult.getAllErrors();
+                for (ParamError paramError : allErrors)
+                {
+                    List<String> messages = errores.get(paramError.getParamName());
+                    if (messages == null) messages = new ArrayList<>();
+                    errores.put(paramError.getParamName(), messages);
+                }
+
+                Map<String, List<String>> errs = bindingResult.getAllErrors()
+                        .stream()
+                        .collect(Collectors.groupingBy(paramError -> paramError.getParamName(),
+                                Collectors.mapping(paramError -> paramError.getMessage(),
+                                        Collectors.toList())
+                        ) );
+
+                Cliente cliente = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toCliente(clienteDto).withId(id);
+                models.put("action", Action.UPDATE);
+                models.put("cliente", cliente);
+                models.put("errores", errores);
+                return Response.ok("/jsps/clientes/cliente.jsp").build();
+            }
+
+            Optional<Cliente> optCliente = updateClienteByIdUseCase.execute(id, clienteDto);
+
+            if (optCliente.isEmpty())
+            {
+                return Response.ok("/jsps/clientes/clienteNotFound.jsp").build();
+            }
+
+            return Response.seeOther(mvc.uri("findAllClientes", Map.of("locale", mvc.getLocale()))).build();
+        }catch (InternalServerErrorException exception)
+        {
+            models.put("errorMessage", exception.getMessage());
+            return Response.ok("/jsps/error.jsp").build();
+        }
     }
 
     @POST
