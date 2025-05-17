@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: administrador
@@ -11,20 +12,20 @@
     <title>Clientes</title>
 </head>
 <body>
-    <h1>Listado de Clientes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="cliente" items="${clientes}">
+        <h1>Listado de Clientes</h1>
+        <table>
+            <thead>
                 <tr>
-                    <td>${cliente.nombre}</td>
+                    <th>Nombre</th>
                 </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <c:forEach var="cliente" items="${clientes}">
+                    <tr>
+                        <td>${cliente.nombre}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 </body>
 </html>
