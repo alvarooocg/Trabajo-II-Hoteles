@@ -7,19 +7,26 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ws-clientes" />
+        <module name="web" />
+        <module name="domain" />
         <module name="ws-hoteles" />
+        <module name="ws-habitaciones" />
         <module name="shared-quarkus" />
         <module name="ws-reservas" />
         <module name="gateway" />
-        <module name="domain" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hoteles" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="gateway" options="-parameters" />
+      <module name="hoteles" options="-parameters" />
       <module name="shared-quarkus" options="-parameters" />
       <module name="ws-clientes" options="-parameters" />
+      <module name="ws-habitaciones" options="-parameters" />
       <module name="ws-hoteles" options="-parameters" />
       <module name="ws-reservas" options="-parameters" />
     </option>
