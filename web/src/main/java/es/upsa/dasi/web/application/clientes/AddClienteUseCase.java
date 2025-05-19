@@ -5,5 +5,5 @@ import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Cliente;
 
 public interface AddClienteUseCase
 {
-    Cliente execute(ClienteDto clienteDto);
+    Cliente execute(Cliente cliente);
 }

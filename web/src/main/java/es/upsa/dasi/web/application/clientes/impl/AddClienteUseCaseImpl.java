@@ -16,8 +16,8 @@ public class AddClienteUseCaseImpl implements AddClienteUseCase
     ClientesGatewayRestClient restClient;
 
     @Override
-    public Cliente execute(ClienteDto clienteDto)
+    public Cliente execute(Cliente cliente)
     {
-        return restClient.addCliente(clienteDto);
+        return restClient.addCliente(cliente);
     }
 }

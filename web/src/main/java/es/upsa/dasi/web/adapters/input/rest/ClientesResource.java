@@ -127,26 +127,66 @@ public class ClientesResource
     @UriRef("insertCliente")
     @Controller
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response insertCliente()
+    public Response insertCliente(@Valid @BeanParam ClienteForm clienteForm) throws HotelesAppException {
+        try {
+            ClienteDto clienteDto = Mappers.toClienteDto(clienteForm);
+
+            if (bindingResult.isFailed()) {
+                Map<String, List<String>> errores = bindingResult.getAllErrors()
+                        .stream()
+                        .collect(Collectors.groupingBy(
+                                ParamError::getParamName,
+                                Collectors.mapping(ParamError::getMessage, Collectors.toList())
+                        ));
+
+                Cliente cliente = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toCliente(clienteDto);
+
+                models.put("action", Action.INSERT);
+                models.put("cliente", cliente);
+                models.put("errores", errores);
+
+                return Response.ok("/jsps/clientes/cliente.jsp").build();
+            }
+
+            Cliente cliente = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toCliente(clienteDto);
+            Cliente clienteInserted = addClienteUseCase.execute(cliente);
+
+            return Response.seeOther(mvc.uri("findAllClientes", Map.of("locale", mvc.getLocale()))).build();
+        } catch (InternalServerErrorException exception) {
+            models.put("errorMessage", exception.getMessage());
+            return Response.ok("/jsps/error.jsp").build();
+        }
+    }
+
+
+    @DELETE
+    @Path("/{id}")
+    @UriRef("deleteClienteById")
+    @Controller
+    public Response deleteClienteById(@PathParam("id") String id) throws HotelesAppException
     {
         try
         {
+            Optional<Cliente> clienteBuscado = findClienteByIdUseCase.execute(id);
 
-        }catch (InternalServerErrorException exception)
+            if (clienteBuscado.isEmpty())
+            {
+                return Response.ok("/jsps/clientes/clienteNotFound.jsp").build();
+            }
+            else
+            {
+                deleteClienteByIdUseCase.execute(id);
+            }
+
+            return Response.seeOther(mvc.uri("findAllClientes", Map.of("locale", mvc.getLocale()))).build();
+
+        } catch (InternalServerErrorException exception)
         {
             models.put("errorMessage", exception.getMessage());
             return Response.ok("/jsps/error.jsp").build();
         }
     }
 
-    @DELETE
-    @Path("/{id}")
-    @UriRef("deleteClienteById")
-    @Controller
-    public Response deleteClienteById(@PathParam("id") String id)
-    {
-        return null;
-    }
 
 
 
