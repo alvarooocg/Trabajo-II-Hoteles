@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class ClienteForm
 {
-
     @FormParam("id")
     @MvcBinding
     @NotNull
@@ -34,7 +33,6 @@ public class ClienteForm
     @MvcBinding
     @NotNull
     @Size(min = 6, max = 15)
-    @Pattern(regexp = "\\+?\\d+")
     @NotBlank
     private String telefono;
 }

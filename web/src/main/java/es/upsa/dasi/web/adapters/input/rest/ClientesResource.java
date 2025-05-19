@@ -6,9 +6,7 @@ import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelesAppException;
 import es.upsa.dasi.web.adapters.input.rest.dtos.Action;
 import es.upsa.dasi.web.adapters.input.rest.dtos.ClienteForm;
 import es.upsa.dasi.web.adapters.input.rest.mappers.Mappers;
-import es.upsa.dasi.web.application.clientes.FindAllClientesUseCase;
-import es.upsa.dasi.web.application.clientes.FindClienteByIdUseCase;
-import es.upsa.dasi.web.application.clientes.UpdateClienteByIdUseCase;
+import es.upsa.dasi.web.application.clientes.*;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.*;
@@ -38,6 +36,12 @@ public class ClientesResource
 
     @Inject
     UpdateClienteByIdUseCase updateClienteByIdUseCase;
+
+    @Inject
+    AddClienteUseCase addClienteUseCase;
+
+    @Inject
+    DeleteClienteByIdUseCase deleteClienteByIdUseCase;
 
     @Inject
     MvcContext mvc;
@@ -125,7 +129,14 @@ public class ClientesResource
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response insertCliente()
     {
-        return null;
+        try
+        {
+
+        }catch (InternalServerErrorException exception)
+        {
+            models.put("errorMessage", exception.getMessage());
+            return Response.ok("/jsps/error.jsp").build();
+        }
     }
 
     @DELETE
