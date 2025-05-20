@@ -35,7 +35,7 @@ public interface ClientesGatewayRestClient
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    Cliente addCliente (Cliente cliente);
+    Cliente addCliente (ClienteDto clienteDto);
 
     @Path("/{id}")
     @DELETE

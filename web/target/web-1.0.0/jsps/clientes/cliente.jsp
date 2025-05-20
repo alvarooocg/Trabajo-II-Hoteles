@@ -1,3 +1,5 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: alumnoad
@@ -5,8 +7,6 @@
   Time: 17:30
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <fmt:setLocale value="${mvc.locale}"/>
@@ -43,42 +43,69 @@
 <head>
     <title><fmt:message bundle="${messages}" key="title.cliente"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<c:if test="${not empty errores}">
-    <ul class="alert alert-danger">
-        <c:forEach var="entry" items="${errores}">
-            <li><strong>${entry.key}:</strong> <c:forEach var="msg" items="${entry.value}">${msg}<br/></c:forEach></li>
-        </c:forEach>
-    </ul>
-</c:if>
-
-<div class="container mt-3">
+<div class="container mt-4">
     <form method="POST" action="${urlForm}" enctype="application/x-www-form-urlencoded">
         <input type="hidden" name="_method" value="${method}" />
-        <fieldset>
-            <div class="mb-3">
-                <label for="id" class="form-label"><fmt:message bundle="${messages}" key="label.id"/></label>
-                <input type="text" class="form-control" id="id" name="id" value="${cliente.id}" ${action == 'INSERT' ? '' : 'readonly'} />
-            </div>
-            <div class="mb-3">
-                <label for="nombre" class="form-label"><fmt:message bundle="${messages}" key="label.nombre"/></label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" ${readonly} />
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label"><fmt:message bundle="${messages}" key="label.email"/></label>
-                <input type="email" class="form-control" id="email" name="email" value="${cliente.email}" ${readonly} />
-            </div>
-            <div class="mb-3">
-                <label for="telefono" class="form-label"><fmt:message bundle="${messages}" key="label.telefono"/></label>
-                <input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}" ${readonly} />
-            </div>
 
-            <c:if test="${action != 'VIEW'}">
-                <button type="submit" class="btn btn-primary">${labelSubmit}</button>
-            </c:if>
-            <a href="${mvc.uri('findAllClientes', {'locale': mvc.locale})}" class="btn btn-secondary ms-2"><fmt:message bundle="${messages}" key="action.back"/></a>
+        <fieldset>
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label"><fmt:message bundle="${messages}" key="label.nombre"/></label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" ${readonly}>
+                        <c:if test="${not empty errores['nombre']}">
+                            <div class="form-text text-danger">
+                                <ul>
+                                    <c:forEach var="msg" items="${errores['nombre']}">
+                                        <li>${msg}</li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </c:if>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label"><fmt:message bundle="${messages}" key="label.email"/></label>
+                        <input type="email" class="form-control" id="email" name="email" value="${cliente.email}" ${readonly}>
+                        <c:if test="${not empty errores['email']}">
+                            <div class="form-text text-danger">
+                                <ul>
+                                    <c:forEach var="msg" items="${errores['email']}">
+                                        <li>${msg}</li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </c:if>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label"><fmt:message bundle="${messages}" key="label.telefono"/></label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}" ${readonly}>
+                        <c:if test="${not empty errores['telefono']}">
+                            <div class="form-text text-danger">
+                                <ul>
+                                    <c:forEach var="msg" items="${errores['telefono']}">
+                                        <li>${msg}</li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </c:if>
+                    </div>
+
+                    <div class="d-flex justify-content-start gap-3 mt-4">
+                        <c:if test="${action != 'VIEW'}">
+                            <input type="submit" class="btn btn-primary" value="${labelSubmit}" />
+                        </c:if>
+                        <a href="${mvc.uri('findAllClientes', {'locale': mvc.locale})}" class="btn btn-secondary">
+                            <fmt:message bundle="${messages}" key="action.back"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </fieldset>
     </form>
 </div>
@@ -86,4 +113,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

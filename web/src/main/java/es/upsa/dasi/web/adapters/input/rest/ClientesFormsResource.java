@@ -40,4 +40,27 @@ public class ClientesFormsResource
         return Response.ok("/jsps/clientes/cliente.jsp").build();
     }
 
+    @GET
+    @Path("/insert/cliente")
+    @Controller
+    @UriRef("formInsertCliente")
+    public Response formInsertcliente()
+    {
+        models.put("action", Action.INSERT);
+        return Response.ok("/jsps/clientes/cliente.jsp").build();
+    }
+
+    @GET
+    @Path("/delete/cliente/{id}")
+    @Controller
+    @UriRef("formDeleteClienteById")
+    public Response formDeleteClienteById(@PathParam("id") String id) throws HotelesAppException
+    {
+        Optional<Cliente> clienteOptional = findClienteByIdUseCase.execute(id);
+        if (clienteOptional.isEmpty()) return Response.ok("/jsps/clientes/clienteNotFound.jsp").build();
+
+        models.put("action", Action.DELETE);
+        models.put("cliente", clienteOptional.get());
+        return Response.ok("/jsps/pelicula.jsp").build();
+    }
 }

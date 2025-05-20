@@ -7,6 +7,7 @@ import es.upsa.dasi.web.adapters.input.rest.dtos.Action;
 import es.upsa.dasi.web.adapters.input.rest.dtos.ClienteForm;
 import es.upsa.dasi.web.adapters.input.rest.mappers.Mappers;
 import es.upsa.dasi.web.application.clientes.*;
+import es.upsa.dasi.web.domain.exceptions.ClientesNotFoundRuntimeException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.*;
@@ -67,14 +68,18 @@ public class ClientesResource
     public Response findClienteById (@PathParam("id") String id) throws HotelesAppException
     {
         Optional<Cliente> optCliente = findClienteByIdUseCase.execute(id);
-
-        models.put("cliente", optCliente.get());
-        return Response.ok("/jsps/clientes/cliente.jsp").build();
+        if (optCliente.isPresent()) {
+            models.put("cliente", optCliente.get());
+            return Response.ok("/jsps/clientes/cliente.jsp").build();
+        }else
+        {
+            throw new ClientesNotFoundRuntimeException(id);
+        }
     }
 
     @PUT
     @Path("/{id}")
-    @UriRef("updatePeliculaById")
+    @UriRef("updateClienteById")
     @Controller
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response updateClienteById (@PathParam("id") String id, @Valid @BeanParam ClienteForm clienteForm) throws HotelesAppException
@@ -84,7 +89,6 @@ public class ClientesResource
             ClienteDto clienteDto = Mappers.toClienteDto(clienteForm);
             if (bindingResult.isFailed())
             {
-                ParamError p;
                 Map<String, List<String>> errores = new HashMap<>();
                 Set<ParamError> allErrors = bindingResult.getAllErrors();
                 for (ParamError paramError : allErrors)
@@ -127,37 +131,43 @@ public class ClientesResource
     @UriRef("insertCliente")
     @Controller
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response insertCliente(@Valid @BeanParam ClienteForm clienteForm) throws HotelesAppException {
-        try {
-            ClienteDto clienteDto = Mappers.toClienteDto(clienteForm);
+    public Response insertCliente(@Valid @BeanParam ClienteForm clienteForm)
+    {
+        try
+        {
+            if ( bindingResult.isFailed() )
+            {
+                Cliente cliente = Mappers.toCliente(clienteForm);
+                Map<String, List<String>> errores = new HashMap<>();
 
-            if (bindingResult.isFailed()) {
-                Map<String, List<String>> errores = bindingResult.getAllErrors()
-                        .stream()
-                        .collect(Collectors.groupingBy(
-                                ParamError::getParamName,
-                                Collectors.mapping(ParamError::getMessage, Collectors.toList())
-                        ));
+                for (ParamError paramError : bindingResult.getAllErrors())
+                {
+                    List<String> paramErrores = errores.get(paramError.getParamName());
+                    if (paramErrores == null)
+                    {
+                        paramErrores = new ArrayList<>();
+                        errores.put(paramError.getParamName(), paramErrores);
+                    }
+                    paramErrores.add( paramError.getMessage() );
+                }
 
-                Cliente cliente = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toCliente(clienteDto);
 
                 models.put("action", Action.INSERT);
                 models.put("cliente", cliente);
                 models.put("errores", errores);
-
                 return Response.ok("/jsps/clientes/cliente.jsp").build();
             }
 
-            Cliente cliente = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toCliente(clienteDto);
-            Cliente clienteInserted = addClienteUseCase.execute(cliente);
+            ClienteDto clienteDto = Mappers.toClienteDto(clienteForm);
+            Cliente cliente = addClienteUseCase.execute(clienteDto);
 
             return Response.seeOther(mvc.uri("findAllClientes", Map.of("locale", mvc.getLocale()))).build();
-        } catch (InternalServerErrorException exception) {
+        } catch (InternalServerErrorException exception)
+        {
             models.put("errorMessage", exception.getMessage());
             return Response.ok("/jsps/error.jsp").build();
         }
     }
-
 
     @DELETE
     @Path("/{id}")
@@ -167,25 +177,19 @@ public class ClientesResource
     {
         try
         {
-            Optional<Cliente> clienteBuscado = findClienteByIdUseCase.execute(id);
-
-            if (clienteBuscado.isEmpty())
-            {
-                return Response.ok("/jsps/clientes/clienteNotFound.jsp").build();
-            }
-            else
-            {
-                deleteClienteByIdUseCase.execute(id);
-            }
-
+            deleteClienteByIdUseCase.execute(id);
             return Response.seeOther(mvc.uri("findAllClientes", Map.of("locale", mvc.getLocale()))).build();
-
-        } catch (InternalServerErrorException exception)
+        } catch (ClientesNotFoundRuntimeException exception)
+        {
+            return Response.ok("/jsps/clientes/clienteNotFound.jsp").build();
+        }
+        catch (InternalServerErrorException exception)
         {
             models.put("errorMessage", exception.getMessage());
             return Response.ok("/jsps/error.jsp").build();
         }
     }
+
 
 
 
