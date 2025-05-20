@@ -53,9 +53,9 @@
         <fieldset>
             <div class="row">
                 <div class="col-12 col-md-8 offset-md-2">
-                    
+
                     <div class="mb-3">
-                        <label for="nombre" class="form-label"><fmt:message bundle="${messages}" key="label.nombre"/></label>
+                        <label for="nombre" class="form-label"><fmt:message bundle="${messages}" key="label.cliente.nombre"/></label>
                         <input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" ${readonly}>
                         <c:if test="${not empty errores['nombre']}">
                             <div class="form-text text-danger">
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="email" class="form-label"><fmt:message bundle="${messages}" key="label.email"/></label>
+                        <label for="email" class="form-label"><fmt:message bundle="${messages}" key="label.cliente.email"/></label>
                         <input type="email" class="form-control" id="email" name="email" value="${cliente.email}" ${readonly}>
                         <c:if test="${not empty errores['email']}">
                             <div class="form-text text-danger">
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="telefono" class="form-label"><fmt:message bundle="${messages}" key="label.telefono"/></label>
+                        <label for="telefono" class="form-label"><fmt:message bundle="${messages}" key="label.cliente.telefono"/></label>
                         <input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}" ${readonly}>
                         <c:if test="${not empty errores['telefono']}">
                             <div class="form-text text-danger">
