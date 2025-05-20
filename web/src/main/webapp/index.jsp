@@ -5,12 +5,14 @@
   <title>Trabajo-II-DASI</title>
 </head>
 <body>
-<h1><%= "Trabajo II DASI" %></h1>
-<br/>
+  <h1><%= "Trabajo II DASI" %></h1>
+  <br/>
 
-<h3>Gonzalo Gardón Martín - Álvaro Criado García - Ricardo Trujillo Antiveros</h3>
+  <h3>Gonzalo Gardón Martín - Álvaro Criado García - Ricardo Trujillo Antiveros</h3>
 
-<label>Aplicacion de información de hoteles</label>
+  <label>Aplicacion de información de hoteles</label>
+
+  <a href="/web-1.0.0/web/jsps/clientes">Ir a gestión de clientes</a>
 
 </body>
 </html>

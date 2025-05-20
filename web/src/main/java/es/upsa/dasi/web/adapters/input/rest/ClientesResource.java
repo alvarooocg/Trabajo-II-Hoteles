@@ -151,7 +151,6 @@ public class ClientesResource
                     paramErrores.add( paramError.getMessage() );
                 }
 
-
                 models.put("action", Action.INSERT);
                 models.put("cliente", cliente);
                 models.put("errores", errores);
