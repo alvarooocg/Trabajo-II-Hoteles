@@ -28,7 +28,7 @@
     <c:when test="${action == 'INSERT'}">
         <c:set var="readonly" value=""/>
         <fmt:message bundle="${messages}" key="label.submit.insert" var="labelSubmit"/>
-        <c:set var="urlForm" value="${mvc.uri('insertCliente', {'locale': mvc.locale})}" />
+        <c:set var="urlForm" value="${mvc.uri('insertCliente', {'locale': mvc.locale}) }" />
         <c:set var="method" value="POST" />
     </c:when>
     <c:otherwise>
@@ -53,6 +53,12 @@
         <fieldset>
             <div class="row">
                 <div class="col-12 col-md-8 offset-md-2">
+                    <c:if test="${action != 'INSERT'}">
+                        <div class="mb-3">
+                            <label for="id" class="form-label"><fmt:message bundle="${messages}" key="label.cliente.id"/></label>
+                            <input type="text" class="form-control" id="id" name="id" value="${cliente.id}" readonly>
+                        </div>
+                    </c:if>
 
                     <div class="mb-3">
                         <label for="nombre" class="form-label"><fmt:message bundle="${messages}" key="label.cliente.nombre"/></label>

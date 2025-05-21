@@ -12,6 +12,7 @@
 <fmt:setLocale value="${mvc.locale}" />
 <fmt:setBundle basename="messages" var="messages" />
 
+
 <html>
 <head>
     <title><fmt:message bundle="${messages}" key="title.clientes" /></title>

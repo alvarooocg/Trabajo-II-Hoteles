@@ -10,9 +10,6 @@ public class ClienteForm
 {
     @FormParam("id")
     @MvcBinding
-    @NotNull
-    @Size(min = 1, max = 9)
-    @NotBlank
     private String id;
 
     @FormParam("nombre")

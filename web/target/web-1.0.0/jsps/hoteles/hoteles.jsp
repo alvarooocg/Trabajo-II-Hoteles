@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: administrador
@@ -23,12 +24,27 @@
         <caption> <fmt:message bundle="${messages}" key="title.hoteles" /> </caption>
         <thead class="table-dark">
             <tr>
-                <th scope="col"> <fmt:message bundle="${messages}" key </th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col"> <fmt:message bundle="${messages}" key="label.hotel.nombre"/> </th>
+                <th scope="col"> <fmt:message bundle="${messages}" key="label.hotel.ciudad"/> </th>
+                <th scope="col"> <fmt:message bundle="${messages}" key="label.hotel.estrellas"/> </th>
+                <th scope="col"> <fmt:message bundle="${messages}" key="label.hotel.descripcion"/> </th>
+                <th scope="col"> <fmt:message bundle="${messages}" key="label.acciones"/> </th>
             </tr>
         </thead>
+        <tbody class="table-group-divider">
+            <c:forEach var="hotel" items="${hoteles}">
+                <c:set var="uriHotel"           value="${mvc.uri('findHotelById',       {'id': hotel.id, 'locale': mvc.locale})}"/>
+                <c:set var="uriUpdateHotelById" value="${mvc.uri('formUpdateHotelById', {'id': hotel.id, 'locale': mvc.locale})}"/>
+                <tr>
+                    <td><a href="${uriHotel}">${hotel.nombre}</a></td>
+                    <td>${hotel.ciudad}</td>
+                    <td>${hotel.estrellas}</td>
+                    <td>${hotel.descripcion}</td>
+                    <td> <a href="${uriUpdateHotelById}"> <fmt:message bundle="${messages}" key="action.update" /> </a> <a href=""> <fmt:message bundle="${messages}" key="action.delete" /> </a> </td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

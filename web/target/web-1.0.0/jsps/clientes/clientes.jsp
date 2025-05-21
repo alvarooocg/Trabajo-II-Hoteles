@@ -12,6 +12,7 @@
 <fmt:setLocale value="${mvc.locale}" />
 <fmt:setBundle basename="messages" var="messages" />
 
+
 <html>
 <head>
     <title><fmt:message bundle="${messages}" key="title.clientes" /></title>
@@ -30,10 +31,10 @@
         <caption><fmt:message bundle="${messages}" key="title.clientes" /></caption>
         <thead class="table-dark">
         <tr>
-            <th scope="col"><fmt:message bundle="${messages}" key="label.nombre" /></th>
-            <th scope="col"><fmt:message bundle="${messages}" key="label.email" /></th>
-            <th scope="col"><fmt:message bundle="${messages}" key="label.telefono" /></th>
-            <th scope="col"><fmt:message bundle="${messages}" key="label.acciones" /></th>
+            <th scope="col"><fmt:message bundle="${messages}" key="label.cliente.nombre" /></th>
+            <th scope="col"><fmt:message bundle="${messages}" key="label.cliente.email" /></th>
+            <th scope="col"><fmt:message bundle="${messages}" key="label.cliente.telefono" /></th>
+            <th scope="col"><fmt:message bundle="${messages}" key="label.cliente.acciones" /></th>
         </tr>
         </thead>
         <tbody class="table-group-divider">

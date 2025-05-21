@@ -61,6 +61,6 @@ public class ClientesFormsResource
 
         models.put("action", Action.DELETE);
         models.put("cliente", clienteOptional.get());
-        return Response.ok("/jsps/pelicula.jsp").build();
+        return Response.ok("/jsps/clientes/cliente.jsp").build();
     }
 }
