@@ -123,7 +123,7 @@ public class ClientesResource
         }catch (InternalServerErrorException exception)
         {
             models.put("errorMessage", exception.getMessage());
-            return Response.ok("/jsps/error.jsp").build();
+            return Response.ok("/jsps/clientes/errorCliente.jsp").build();
         }
     }
 
@@ -164,7 +164,7 @@ public class ClientesResource
         } catch (InternalServerErrorException exception)
         {
             models.put("errorMessage", exception.getMessage());
-            return Response.ok("/jsps/error.jsp").build();
+            return Response.ok("/jsps/clientes/errorCliente.jsp").build();
         }
     }
 
@@ -185,7 +185,7 @@ public class ClientesResource
         catch (InternalServerErrorException exception)
         {
             models.put("errorMessage", exception.getMessage());
-            return Response.ok("/jsps/error.jsp").build();
+            return Response.ok("/jsps/clientes/errorCliente.jsp").build();
         }
     }
 

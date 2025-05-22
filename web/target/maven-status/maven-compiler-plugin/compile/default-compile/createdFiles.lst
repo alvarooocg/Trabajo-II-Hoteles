@@ -13,6 +13,8 @@ es/upsa/dasi/web/adapters/input/rest/HotelesResource.class
 es/upsa/dasi/web/application/hoteles/FIndHotelByIdUseCase.class
 es/upsa/dasi/web/application/hoteles/impl/FindAllHotelesUseCaseImpl.class
 es/upsa/dasi/web/infrastructure/rest/providers/HotelesResponseExceptionMapper$1.class
+es/upsa/dasi/web/infrastructure/rest/providers/ClientesResponseExceptionMapper$1.class
+es/upsa/dasi/web/infrastructure/rest/providers/ClientesResponseExceptionMapper.class
 es/upsa/dasi/web/application/clientes/UpdateClienteByIdUseCase.class
 es/upsa/dasi/web/application/clientes/FindClienteByIdUseCase.class
 es/upsa/dasi/web/adapters/input/rest/mappers/Mappers.class

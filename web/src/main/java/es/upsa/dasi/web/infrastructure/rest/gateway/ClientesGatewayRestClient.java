@@ -2,13 +2,16 @@ package es.upsa.dasi.web.infrastructure.rest.gateway;
 
 import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.ClienteDto;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Cliente;
+import es.upsa.dasi.web.infrastructure.rest.providers.ClientesResponseExceptionMapper;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import java.util.List;
 
 @RegisterRestClient(baseUri = "http://localhost:8082")
+@RegisterProvider(ClientesResponseExceptionMapper.class)
 public interface ClientesGatewayRestClient
 {
     @GET

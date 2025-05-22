@@ -27,4 +27,5 @@
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/gateway/HabitacionesGatewayRestClient.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/gateway/HotelesGatewayRestClient.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/gateway/ReservasGatewayRestClient.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/providers/ClientesResponseExceptionMapper.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/providers/HotelesResponseExceptionMapper.java
