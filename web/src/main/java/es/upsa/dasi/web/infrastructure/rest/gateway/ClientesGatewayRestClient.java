@@ -33,6 +33,7 @@ public interface ClientesGatewayRestClient
     Cliente updateCliente (@PathParam("id") String id, ClienteDto clienteDto);
 
     @POST
+    @Path("/clientes")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     Cliente addCliente (ClienteDto clienteDto);

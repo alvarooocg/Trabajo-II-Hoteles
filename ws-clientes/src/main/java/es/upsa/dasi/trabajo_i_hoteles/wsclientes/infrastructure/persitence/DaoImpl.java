@@ -119,7 +119,8 @@ public class DaoImpl implements Dao
             preparedStatement.setString(1, cliente.getNombre());
             preparedStatement.setString(2, cliente.getEmail());
             preparedStatement.setString(3, cliente.getTelefono());
-            try(ResultSet resultSet = preparedStatement.executeQuery())
+            preparedStatement.executeUpdate();
+            try(ResultSet resultSet = preparedStatement.getGeneratedKeys())
             {
                 resultSet.next();
                 String id = resultSet.getString(1);
