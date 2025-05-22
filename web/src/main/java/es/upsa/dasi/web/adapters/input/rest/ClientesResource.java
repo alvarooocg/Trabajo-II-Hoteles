@@ -73,7 +73,7 @@ public class ClientesResource
             return Response.ok("/jsps/clientes/cliente.jsp").build();
         }else
         {
-            throw new ClientesNotFoundRuntimeException(id);
+            throw new ClientesNotFoundRuntimeException();
         }
     }
 
@@ -188,9 +188,5 @@ public class ClientesResource
             return Response.ok("/jsps/error.jsp").build();
         }
     }
-
-
-
-
 
 }

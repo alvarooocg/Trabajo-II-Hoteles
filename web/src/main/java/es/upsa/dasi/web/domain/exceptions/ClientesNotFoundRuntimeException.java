@@ -4,5 +4,5 @@ import jakarta.ws.rs.NotFoundException;
 
 public class ClientesNotFoundRuntimeException extends NotFoundException
 {
-    public ClientesNotFoundRuntimeException(String message) { super("Cliente no encontrado"); }
+    public ClientesNotFoundRuntimeException() { super("Cliente no encontrado"); }
 }

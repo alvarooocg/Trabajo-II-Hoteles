@@ -2,13 +2,8 @@ package es.upsa.dasi.web.infrastructure.rest.gateway;
 
 import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.ClienteDto;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Cliente;
-import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelesAppException;
-import es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.UriInfo;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import java.util.List;
@@ -38,7 +33,7 @@ public interface ClientesGatewayRestClient
     @Produces(MediaType.APPLICATION_JSON)
     Cliente addCliente (ClienteDto clienteDto);
 
-    @Path("/{id}")
+    @Path("/clientes/{id}")
     @DELETE
     void deleteClienteById(@PathParam("id") String id);
 }

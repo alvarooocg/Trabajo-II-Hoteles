@@ -1,10 +1,19 @@
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/adapters/input/rest/ClientesFormsResource.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/adapters/input/rest/ClientesResource.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/adapters/input/rest/HotelesResource.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/adapters/input/rest/dtos/Action.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/adapters/input/rest/dtos/ClienteForm.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/adapters/input/rest/mappers/Mappers.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/AddClienteUseCase.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/DeleteClienteByIdUseCase.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/FindAllClientesUseCase.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/FindClienteByIdUseCase.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/UpdateClienteByIdUseCase.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/impl/AddClienteUseCaseImpl.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/impl/DeleteClienteByIdUseCaseImpl.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/impl/FindAllClientesUsecaseImpl.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/impl/FindClienteByIdUseCaseImpl.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/clientes/impl/UpdateClienteByIdUseCaseImpl.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/hoteles/FIndHotelByIdUseCase.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/hoteles/FindAllHotelesUseCase.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/application/hoteles/impl/FindAllHotelesUseCaseImpl.java
@@ -12,6 +21,7 @@
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/domain/exceptions/ClientesNotFoundRuntimeException.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/domain/exceptions/HotelNotFoundRuntimeException.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/HotelesApplication.java
+/Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/mvc/ClientesLocaleResolver.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/mvc/HotelesLocaleResolver.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/gateway/ClientesGatewayRestClient.java
 /Users/alumnoad/Trabajo-II-Hoteles/web/src/main/java/es/upsa/dasi/web/infrastructure/rest/gateway/HabitacionesGatewayRestClient.java

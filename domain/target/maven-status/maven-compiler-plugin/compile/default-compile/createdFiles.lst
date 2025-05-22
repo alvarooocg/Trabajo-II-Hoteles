@@ -1,7 +1,9 @@
 es/upsa/dasi/trabajo_i_hoteles/domain/dtos/ClienteDto.class
+es/upsa/dasi/trabajo_i_hoteles/domain/dtos/HabitacionDto$HabitacionDtoBuilder.class
 es/upsa/dasi/trabajo_i_hoteles/domain/dtos/ReservaDto$ReservaDtoBuilder.class
 es/upsa/dasi/trabajo_i_hoteles/domain/exceptions/FieldBetweenSQLException.class
 es/upsa/dasi/trabajo_i_hoteles/domain/exceptions/HotelesAppException.class
+es/upsa/dasi/trabajo_i_hoteles/domain/dtos/HotelDto$HotelDtoBuilder.class
 es/upsa/dasi/trabajo_i_hoteles/domain/dtos/ErrorDto$ErrorDtoBuilder.class
 es/upsa/dasi/trabajo_i_hoteles/domain/exceptions/ClienteNotFoundException.class
 es/upsa/dasi/trabajo_i_hoteles/domain/exceptions/FieldRequiredSQLException.class
@@ -23,4 +25,5 @@ es/upsa/dasi/trabajo_i_hoteles/domain/entities/Cliente.class
 es/upsa/dasi/trabajo_i_hoteles/domain/exceptions/SQLHotelesAppException.class
 es/upsa/dasi/trabajo_i_hoteles/domain/entities/Reserva.class
 es/upsa/dasi/trabajo_i_hoteles/domain/entities/Hotel$HotelBuilder.class
+es/upsa/dasi/trabajo_i_hoteles/domain/dtos/ClienteDto$ClienteDtoBuilder.class
 es/upsa/dasi/trabajo_i_hoteles/domain/entities/Cliente$ClienteBuilder.class

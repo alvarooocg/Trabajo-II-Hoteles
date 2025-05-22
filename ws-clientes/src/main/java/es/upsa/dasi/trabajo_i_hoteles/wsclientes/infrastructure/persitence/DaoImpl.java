@@ -6,6 +6,7 @@ import es.upsa.dasi.trabajo_i_hoteles.wsclientes.adapters.output.persitence.Dao;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Cliente;
 import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelesAppException;
 import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.ClienteNotFoundException;
+import es.upsa.dasi.trabajo_i_hoteles.wsclientes.domain.exceptions.ClienteHasReservasSQLException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -190,6 +191,7 @@ public class DaoImpl implements Dao
         if (message.contains("NN_CLIENTES.NOMBRE")) return new FieldRequiredSQLException("nombre");
         if (message.contains("NN_CLIENTES.EMAIL")) return new FieldRequiredSQLException("email");
         if (message.contains("NN_CLIENTES.TELEFONO")) return new FieldRequiredSQLException("telefono");
+        if (message.contains("FK_RESERVAS_CLIENTES")) return new ClienteHasReservasSQLException();
 
         return new SQLHotelesAppException(sqlException);
     }
