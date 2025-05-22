@@ -12,7 +12,6 @@
 <fmt:setLocale value="${mvc.locale}" />
 <fmt:setBundle basename="messages" var="messages" />
 
-
 <html>
 <head>
     <title><fmt:message bundle="${messages}" key="title.clientes" /></title>
@@ -55,6 +54,13 @@
         </c:forEach>
         </tbody>
     </table>
+
+    <div class="mt-4">
+        <a href="/web-1.0.0" class="btn btn-secondary">
+            ← Volver al inicio
+        </a>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
