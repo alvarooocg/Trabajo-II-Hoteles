@@ -50,12 +50,6 @@ public class HotelesResource
     @Inject
     Models models;
 
-    @Inject
-    MvcContext mvcContext;
-
-    @Inject
-    private BindingResultImpl bindingResultImpl;
-
     @GET
     @Controller
     @UriRef("findAllHoteles")
@@ -87,9 +81,9 @@ public class HotelesResource
         try {
             HotelDto hotelDto = Mappers.toHotelDto(hotelForm);
 
-            if(bindingResultImpl.isFailed()) {
+            if(bindingResult.isFailed()) {
                 Map<String, String> errors = new HashMap<>();
-                Set<ParamError> allErrors = bindingResultImpl.getAllErrors();
+                Set<ParamError> allErrors = bindingResult.getAllErrors();
                 for(ParamError error : allErrors) {
                     List<String> messages = Collections.singletonList(errors.get(error.getParamName()));
                     if(messages == null) messages = new ArrayList<>();
@@ -97,10 +91,10 @@ public class HotelesResource
                     errors.put(error.getParamName(), error.getMessage());
                 }
 
-                bindingResultImpl.getAllErrors().stream()
+                bindingResult.getAllErrors().stream()
                         .collect(Collectors.groupingBy(paramError -> paramError.getParamName()));
 
-                List<String> errores = bindingResultImpl.getAllMessages();
+                List<String> errores = bindingResult.getAllMessages();
                 Hotel hotel = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toHotel(hotelDto);
                 models.put("action", Action.UPDATE);
                 models.put("hotel", hotel);
@@ -124,11 +118,11 @@ public class HotelesResource
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response insertHotel(@Valid @BeanParam HotelForm hotelForm) {
         try {
-            if (bindingResultImpl.isFailed()) {
+            if (bindingResult.isFailed()) {
                 Hotel hotel = Mappers.toHotel(hotelForm);
                 Map<String, List<String>> errores = new HashMap<>();
 
-                for(ParamError paramError : bindingResultImpl.getAllErrors()) {
+                for(ParamError paramError : bindingResult.getAllErrors()) {
                     List<String> paramErrors = errores.get(paramError.getParamName());
                     if(paramErrors == null) {
                         paramErrors = new ArrayList<>();
