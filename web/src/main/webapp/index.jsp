@@ -13,6 +13,7 @@
   <label>Aplicacion de información de hoteles</label>
 
   <a href="/web-1.0.0/web/jsps/clientes">Ir a gestión de clientes</a>
+  <a href="/web-1.0.0/web/jsps/hoteles">Ir a gestión de Hoteles</a>
 
 </body>
 </html>

@@ -29,4 +29,14 @@ public interface HotelesGatewayRestClient
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Hotel updateHotelById(@PathParam("id") String id, HotelDto hotelDto);
+
+    @POST
+    @Path("/hoteles")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Hotel addHotel(HotelDto hotelDto);
+
+    @Path("/hoteles/{id}")
+    @DELETE
+    void deleteHotelById(@PathParam("id") String id);
 }

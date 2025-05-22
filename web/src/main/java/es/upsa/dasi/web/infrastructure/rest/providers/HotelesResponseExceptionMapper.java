@@ -1,7 +1,6 @@
 package es.upsa.dasi.web.infrastructure.rest.providers;
 
 import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.ErrorDto;
-import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelNotFoundAppException;
 import es.upsa.dasi.web.domain.exceptions.HotelNotFoundRuntimeException;
 import jakarta.ws.rs.InternalServerErrorException;
 import jakarta.ws.rs.WebApplicationException;

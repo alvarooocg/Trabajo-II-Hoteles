@@ -2,10 +2,13 @@ package es.upsa.dasi.web.adapters.input.rest.mappers;
 
 import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.ClienteDto;
 import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.HabitacionDto;
+import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.HotelDto;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Cliente;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Habitacion;
+import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Hotel;
 import es.upsa.dasi.web.adapters.input.rest.dtos.ClienteForm;
 import es.upsa.dasi.web.adapters.input.rest.dtos.HabitacionForm;
+import es.upsa.dasi.web.adapters.input.rest.dtos.HotelForm;
 
 public class Mappers
 {
@@ -48,5 +51,23 @@ public class Mappers
                 .build();
 
 
+    }
+
+    public static HotelDto toHotelDto (HotelForm hotelForm) {
+        return HotelDto.builder()
+                .withNombre(hotelForm.getNombre())
+                .withCiudad(hotelForm.getCiudad())
+                .withEstrellas(hotelForm.getEstrellas())
+                .withDescripcion(hotelForm.getDescripcion())
+                .build();
+    }
+
+    public static Hotel toHotel (HotelForm hotelForm) {
+        return Hotel.builder()
+                .withNombre(hotelForm.getNombre())
+                .withCiudad(hotelForm.getCiudad())
+                .withEstrellas(hotelForm.getEstrellas())
+                .withDescripcion(hotelForm.getDescripcion())
+                .build();
     }
 }
