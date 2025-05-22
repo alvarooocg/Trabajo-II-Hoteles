@@ -30,4 +30,14 @@ public interface ReservasGatewayRestClient
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Reserva updateReservaById(@PathParam("id") String id, ReservaDto reservaDto);
+
+    @POST
+    @Path("/reservas")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    Reserva addReserva (ReservaDto habitacionDto);
+
+    @Path("/reservas/{id}")
+    @DELETE
+    void deleteReservaById(@PathParam("id") String id);
 }
