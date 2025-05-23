@@ -45,13 +45,7 @@ public class HotelesResource
     MvcContext mvc;
 
     @Inject
-    BindingResultImpl bindingResult;
-
-    @Inject
     Models models;
-
-    @Inject
-    MvcContext mvcContext;
 
     @Inject
     private BindingResultImpl bindingResultImpl;
@@ -69,7 +63,7 @@ public class HotelesResource
     @Path("/{id}")
     @Controller
     @UriRef("findHotelById")
-    public Response findHotelById(@PathParam("id") String id) {
+    public Response findHotelById(@PathParam("id") String id) throws HotelesAppException {
         Optional<Hotel> optHotel = fIndHotelByIdUseCase.execute(id);
         if(optHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
 
@@ -82,19 +76,19 @@ public class HotelesResource
     @Path("/{id}")
     @UriRef("updateHotelById")
     @Controller
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response updateHotelById(@PathParam("id") String id, @Valid @BeanParam HotelForm hotelForm) {
         try {
             HotelDto hotelDto = Mappers.toHotelDto(hotelForm);
 
             if(bindingResultImpl.isFailed()) {
-                Map<String, String> errors = new HashMap<>();
+                Map<String, List<String>> errors = new HashMap<>();
                 Set<ParamError> allErrors = bindingResultImpl.getAllErrors();
                 for(ParamError error : allErrors) {
-                    List<String> messages = Collections.singletonList(errors.get(error.getParamName()));
+                    List<String> messages = errors.get(error.getParamName());
                     if(messages == null) messages = new ArrayList<>();
 
-                    errors.put(error.getParamName(), error.getMessage());
+                    errors.put(error.getParamName(), messages);
                 }
 
                 bindingResultImpl.getAllErrors().stream()
@@ -111,7 +105,7 @@ public class HotelesResource
 
             if(optionalHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
 
-            return Response.seeOther(mvc.uri("findHoteles", Map.of("locale", mvc.getLocale()))).build();
+            return Response.seeOther(mvc.uri("findAllHoteles", Map.of("locale", mvc.getLocale()))).build();
         } catch (InternalServerErrorException exception) {
             models.put("errorMessage", exception.getMessage());
             return Response.ok("/jsps/hoteles/errorHotel.jsp").build();

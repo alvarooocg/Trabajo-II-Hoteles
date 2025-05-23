@@ -14,7 +14,6 @@ public class AddHotelUseCaseImpl implements AddHotelUseCase {
     @RestClient
     HotelesGatewayRestClient hotelesGatewayRestClient;
 
-
     @Override
     public Hotel execute(HotelDto hotelDto) {
         return hotelesGatewayRestClient.addHotel(hotelDto);

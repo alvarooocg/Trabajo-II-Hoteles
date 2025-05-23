@@ -53,6 +53,7 @@
         <fieldset>
             <div class="row">
                 <div class="col-12 col-md-8 offset-md-2">
+
                     <c:if test="${action != 'INSERT'}">
                         <div class="mb-3">
                             <label for="id" class="form-label"><fmt:message bundle="${messages}" key="label.hotel.id"/></label>

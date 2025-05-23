@@ -88,7 +88,7 @@ public class DaoImpl implements Dao {
     public Hotel insertHotel(Hotel hotel) throws HotelesAppException {
         final String SQL = """
                            INSERT INTO hoteles(id,                     nombre, ciudad, estrellas, descripcion)
-                                       VALUES (nextval('seq-hoteles'),      ?,      ?,         ?,           ?)
+                                       VALUES (nextval('seq_hoteles'),      ?,      ?,         ?,           ?)
                            """;
         final String[] fields = {"id"};
         try (Connection connection = dataSource.getConnection();
@@ -126,6 +126,7 @@ public class DaoImpl implements Dao {
             preparedStatement.setString(2, hotel.getCiudad());
             preparedStatement.setInt(3, hotel.getEstrellas());
             preparedStatement.setString(4, hotel.getDescripcion());
+            preparedStatement.setString(5, hotel.getId());
             int count = preparedStatement.executeUpdate();
             return (count == 0) ? Optional.empty() : Optional.of(hotel);
         } catch (SQLException sqlException) {

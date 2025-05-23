@@ -23,8 +23,6 @@ public class HotelForm {
 
     @FormParam("estrellas")
     @MvcBinding
-    @NotNull
-    @NotBlank
     @Digits(integer = 1, fraction = 0)
     @DecimalMin(value = "1")
     @DecimalMax(value = "5")
