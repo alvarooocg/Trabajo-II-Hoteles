@@ -11,8 +11,8 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import java.util.List;
 
-//@RegisterRestClient(baseUri = "http://localhost:8084")
-@RegisterRestClient(baseUri = "http://host.docker.internal:8084")
+@RegisterRestClient(baseUri = "http://localhost:8084")
+//@RegisterRestClient(baseUri = "http://host.docker.internal:8084")
 @RegisterProvider(ReservasResponseExceptionMapper.class)
 public interface ReservasGatewayRestClient
 {
