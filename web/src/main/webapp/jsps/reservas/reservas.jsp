@@ -33,14 +33,15 @@
         </thead>
         <tbody class="table-group-divider">
         <c:forEach var="reserva" items="${reservas}">
-            <c:set var="uriReserva" value="${mvc.uri('findReservaById', {'id': reserva.id_cliente, 'locale': mvc.locale})}" />
-            <c:set var="uriUpdateReserva" value="${mvc.uri('formUpdateReservaById', {'id': reserva.id_cliente, 'locale': mvc.locale})}" />
-            <c:set var="uriDeleteReserva" value="${mvc.uri('formDeleteReservaById', {'id': reserva.id_cliente, 'locale': mvc.locale})}" />
+
+            <c:set var="uriReserva" value="${mvc.uri('findReservaById', {'id': reserva.id, 'locale': mvc.locale})}" />
+            <c:set var="uriUpdateReserva" value="${mvc.uri('formUpdateReservaById', {'id': reserva.id, 'locale': mvc.locale})}" />
+            <c:set var="uriDeleteReserva" value="${mvc.uri('formDeleteReservaById', {'id': reserva.id, 'locale': mvc.locale})}" />
 
             <tr>
+
                 <td><a href="${uriReserva}">${reserva.id_cliente}</a></td>
                 <td>${reserva.id_habitacion}</td>
-                <!-- Solución para LocalDate: mostrar directamente el valor toString() -->
                 <td>${reserva.fecha_entrada}</td>
                 <td>${reserva.fecha_salida}</td>
                 <td>
@@ -51,9 +52,6 @@
         </c:forEach>
         </tbody>
     </table>
-
-    <p>Lista reservas es null? ${reservas == null}</p>
-    <p>Tamaño lista: ${fn:length(reservas)}</p>
 
 </div>
 

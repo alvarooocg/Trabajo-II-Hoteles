@@ -24,9 +24,8 @@
     <caption><fmt:message bundle="${messages}" key="title.habitaciones" /></caption>
     <thead class="table-dark">
     <tr>
-      <th><fmt:message bundle="${messages}" key="label.habitacion.id" /></th>
-      <th><fmt:message bundle="${messages}" key="label.habitacion.hotel" /></th>
       <th><fmt:message bundle="${messages}" key="label.habitacion.numero" /></th>
+      <th><fmt:message bundle="${messages}" key="label.habitacion.hotel" /></th>
       <th><fmt:message bundle="${messages}" key="label.habitacion.tipo" /></th>
       <th><fmt:message bundle="${messages}" key="label.habitacion.precio" /></th>
       <th><fmt:message bundle="${messages}" key="label.habitacion.disponible" /></th>
@@ -40,9 +39,8 @@
       <c:set var="uriDeleteHabitacion" value="${mvc.uri('formDeleteHabitacionById', {'id': habitacion.id, 'locale': mvc.locale})}" />
 
       <tr>
-        <td><a href="${uriHabitacion}">${habitacion.id}</a></td>
+        <td><a href="${uriHabitacion}">${habitacion.numero}</a></td>
         <td>${habitacion.id_hotel}</td>
-        <td>${habitacion.numero}</td>
         <td>
           <span class="badge bg-secondary">${habitacion.tipo}</span>
         </td>
@@ -52,14 +50,14 @@
         <td>
           <c:choose>
             <c:when test="${habitacion.disponible}">
-                            <span class="badge bg-success">
-                                <fmt:message bundle="${messages}" key="label.disponible" />
-                            </span>
+              <span class="badge bg-success">
+                <fmt:message bundle="${messages}" key="label.disponible" />
+              </span>
             </c:when>
             <c:otherwise>
-                            <span class="badge bg-danger">
-                                <fmt:message bundle="${messages}" key="label.no.disponible" />
-                            </span>
+              <span class="badge bg-danger">
+                <fmt:message bundle="${messages}" key="label.no.disponible" />
+              </span>
             </c:otherwise>
           </c:choose>
         </td>
@@ -77,19 +75,6 @@
     </c:forEach>
     </tbody>
   </table>
-
-  <!-- Información de debug -->
-  <div class="mt-4">
-    <div class="card">
-      <div class="card-header">
-        <h6 class="mb-0">Información de Debug</h6>
-      </div>
-      <div class="card-body">
-        <p class="mb-1">Lista habitaciones es null? <span class="badge bg-info">${habitaciones == null}</span></p>
-        <p class="mb-0">Tamaño lista: <span class="badge bg-info">${fn:length(habitaciones)}</span></p>
-      </div>
-    </div>
-  </div>
 
 </div>
 
