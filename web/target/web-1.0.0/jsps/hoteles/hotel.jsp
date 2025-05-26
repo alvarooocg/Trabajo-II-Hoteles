@@ -54,12 +54,12 @@
             <div class="row">
                 <div class="col-12 col-md-8 offset-md-2">
 
-<%--                    <c:if test="${action != 'INSERT'}">--%>
-<%--                        <div class="mb-3">--%>
-<%--                            <label for="id" class="form-label"><fmt:message bundle="${messages}" key="label.hotel.id"/></label>--%>
-<%--                            <input type="text" class="form-control" id="id" name="id" value="${hotel.id}" readonly>--%>
-<%--                        </div>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${action != 'INSERT'}">
+                        <div class="mb-3">
+                            <label for="id" class="form-label"><fmt:message bundle="${messages}" key="label.hotel.id"/></label>
+                            <input type="text" class="form-control" id="id" name="id" value="${hotel.id}" readonly>
+                        </div>
+                    </c:if>
 
                     <div class="mb-3">
                         <label for="nombre" class="form-label"><fmt:message bundle="${messages}" key="label.hotel.nombre"/></label>
