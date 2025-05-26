@@ -17,14 +17,14 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.krazo.binding.BindingResultImpl;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Path("/{locale}/hoteles")
-public class HotelesResource {
+public class HotelesResource
+{
     @Inject
     FindAllHotelesUseCase findAllHotelesUseCase;
 
@@ -76,43 +76,40 @@ public class HotelesResource {
     @UriRef("updateHotelById")
     @Controller
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response updateHotelById(@PathParam("id") String id, @Valid @BeanParam HotelForm hotelForm)
-    {
-        try
-        {
+    public Response updateHotelById(@PathParam("id") String id, @Valid @BeanParam HotelForm hotelForm) {
+        try {
             HotelDto hotelDto = Mappers.toHotelDto(hotelForm);
 
-            if (bindingResult.isFailed())
-            {
+            if (bindingResult.isFailed()) {
                 Map<String, List<String>> errors = new HashMap<>();
 
-                if (bindingResult.isFailed()) {
-                    Set<ParamError> allErrors = bindingResult.getAllErrors();
+                Set<ParamError> allErrors = bindingResult.getAllErrors();
 
-                    for (ParamError error : allErrors) {
-                        List<String> messages = errors.get(error.getParamName());
-                        if (messages == null) messages = new ArrayList<>();
+                for (ParamError error : allErrors) {
+                    List<String> messages = errors.get(error.getParamName());
+                    if (messages == null) messages = new ArrayList<>();
 
-                        errors.put(error.getParamName(), messages);
-                    }
-
-                    bindingResult.getAllErrors().stream().collect(Collectors.groupingBy(paramError -> paramError.getParamName()));
-
-                    List<String> errores = bindingResult.getAllMessages();
-                    Hotel hotel = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toHotel(hotelDto);
-                    models.put("action", Action.UPDATE);
-                    models.put("hotel", hotel);
-                    models.put("errors", errores);
-                    return Response.ok("/jsps/hoteles/hotel.jsp").build();
+                    errors.put(error.getParamName(), messages);
                 }
-                Optional<Hotel> optionalHotel = updateHotelByIdUseCase.execute(id, hotelDto);
 
-                if (optionalHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
+                bindingResult.getAllErrors().stream().collect(Collectors.groupingBy(paramError -> paramError.getParamName()));
 
-                return Response.seeOther(mvc.uri("findAllHoteles", Map.of("locale", mvc.getLocale()))).build();
+                List<String> errores = bindingResult.getAllMessages();
+                Hotel hotel = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toHotel(hotelDto);
+                models.put("action", Action.UPDATE);
+                models.put("hotel", hotel);
+                models.put("errors", errores);
+                return Response.ok("/jsps/hoteles/hotel.jsp").build();
             }
-        }catch(InternalServerErrorException exception)
-        {
+            Optional<Hotel> optionalHotel = updateHotelByIdUseCase.execute(id, hotelDto);
+
+            if (optionalHotel.isEmpty()) {
+                return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
+            }
+
+            return Response.seeOther(mvc.uri("findAllHoteles", Map.of("locale", mvc.getLocale()))).build();
+        } catch (
+                InternalServerErrorException exception) {
             models.put("errorMessage", exception.getMessage());
             return Response.ok("/jsps/hoteles/errorHotel.jsp").build();
         }
