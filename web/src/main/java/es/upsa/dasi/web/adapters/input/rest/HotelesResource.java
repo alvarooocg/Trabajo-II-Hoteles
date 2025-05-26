@@ -2,8 +2,8 @@ package es.upsa.dasi.web.adapters.input.rest;
 
 import es.upsa.dasi.trabajo_i_hoteles.domain.dtos.HotelDto;
 import es.upsa.dasi.trabajo_i_hoteles.domain.entities.Hotel;
-import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelNotFoundAppException;
 import es.upsa.dasi.trabajo_i_hoteles.domain.exceptions.HotelesAppException;
+import es.upsa.dasi.web.adapters.input.rest.dtos.Action;
 import es.upsa.dasi.web.adapters.input.rest.dtos.HotelForm;
 import es.upsa.dasi.web.adapters.input.rest.mappers.Mappers;
 import es.upsa.dasi.web.application.hoteles.*;
@@ -11,21 +11,20 @@ import es.upsa.dasi.web.domain.exceptions.HotelNotFoundRuntimeException;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.mvc.*;
+import jakarta.mvc.binding.BindingResult;
 import jakarta.mvc.binding.ParamError;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.krazo.binding.BindingResultImpl;
-import es.upsa.dasi.web.adapters.input.rest.dtos.Action;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Path("/{locale}/hoteles")
-public class HotelesResource
-{
+public class HotelesResource {
     @Inject
     FindAllHotelesUseCase findAllHotelesUseCase;
 
@@ -47,11 +46,8 @@ public class HotelesResource
     @Inject
     Models models;
 
-
     @Inject
-    private BindingResultImpl bindingResultImpl;
-
-
+    BindingResult bindingResult;
 
     @GET
     @Controller
@@ -68,7 +64,7 @@ public class HotelesResource
     @UriRef("findHotelById")
     public Response findHotelById(@PathParam("id") String id) throws HotelesAppException {
         Optional<Hotel> optHotel = fIndHotelByIdUseCase.execute(id);
-        if(optHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
+        if (optHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
 
         models.put("action", Action.VIEW);
         models.put("hotel", optHotel.get());
@@ -80,42 +76,43 @@ public class HotelesResource
     @UriRef("updateHotelById")
     @Controller
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response updateHotelById(@PathParam("id") String id, @Valid @BeanParam HotelForm hotelForm) {
-        try {
+    public Response updateHotelById(@PathParam("id") String id, @Valid @BeanParam HotelForm hotelForm)
+    {
+        try
+        {
             HotelDto hotelDto = Mappers.toHotelDto(hotelForm);
 
-
-            if(bindingResultImpl.isFailed()) {
+            if (bindingResult.isFailed())
+            {
                 Map<String, List<String>> errors = new HashMap<>();
-                Set<ParamError> allErrors = bindingResultImpl.getAllErrors();
 
-            if(bindingResult.isFailed()) {
-                Map<String, String> errors = new HashMap<>();
-                Set<ParamError> allErrors = bindingResult.getAllErrors();
+                if (bindingResult.isFailed()) {
+                    Set<ParamError> allErrors = bindingResult.getAllErrors();
 
-                for(ParamError error : allErrors) {
-                    List<String> messages = errors.get(error.getParamName());
-                    if(messages == null) messages = new ArrayList<>();
+                    for (ParamError error : allErrors) {
+                        List<String> messages = errors.get(error.getParamName());
+                        if (messages == null) messages = new ArrayList<>();
 
-                    errors.put(error.getParamName(), messages);
+                        errors.put(error.getParamName(), messages);
+                    }
+
+                    bindingResult.getAllErrors().stream().collect(Collectors.groupingBy(paramError -> paramError.getParamName()));
+
+                    List<String> errores = bindingResult.getAllMessages();
+                    Hotel hotel = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toHotel(hotelDto);
+                    models.put("action", Action.UPDATE);
+                    models.put("hotel", hotel);
+                    models.put("errors", errores);
+                    return Response.ok("/jsps/hoteles/hotel.jsp").build();
                 }
+                Optional<Hotel> optionalHotel = updateHotelByIdUseCase.execute(id, hotelDto);
 
-                bindingResult.getAllErrors().stream()
-                        .collect(Collectors.groupingBy(paramError -> paramError.getParamName()));
+                if (optionalHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
 
-                List<String> errores = bindingResult.getAllMessages();
-                Hotel hotel = es.upsa.dasi.trabajo_i_hoteles.domain.mappers.Mappers.toHotel(hotelDto);
-                models.put("action", Action.UPDATE);
-                models.put("hotel", hotel);
-                models.put("errors", errores);
-                return Response.ok("/jsps/hoteles/hotel.jsp").build();
+                return Response.seeOther(mvc.uri("findAllHoteles", Map.of("locale", mvc.getLocale()))).build();
             }
-            Optional<Hotel> optionalHotel = updateHotelByIdUseCase.execute(id, hotelDto);
-
-            if(optionalHotel.isEmpty()) return Response.ok("/jsps/hoteles/hotelNotFound.jsp").build();
-
-            return Response.seeOther(mvc.uri("findAllHoteles", Map.of("locale", mvc.getLocale()))).build();
-        } catch (InternalServerErrorException exception) {
+        }catch(InternalServerErrorException exception)
+        {
             models.put("errorMessage", exception.getMessage());
             return Response.ok("/jsps/hoteles/errorHotel.jsp").build();
         }
@@ -131,9 +128,9 @@ public class HotelesResource
                 Hotel hotel = Mappers.toHotel(hotelForm);
                 Map<String, List<String>> errores = new HashMap<>();
 
-                for(ParamError paramError : bindingResult.getAllErrors()) {
+                for (ParamError paramError : bindingResult.getAllErrors()) {
                     List<String> paramErrors = errores.get(paramError.getParamName());
-                    if(paramErrors == null) {
+                    if (paramErrors == null) {
                         paramErrors = new ArrayList<>();
                         errores.put(paramError.getParamName(), paramErrors);
                     }
@@ -170,4 +167,5 @@ public class HotelesResource
             return Response.ok("/jsps/hoteles/errorHotel.jsp").build();
         }
     }
+
 }
