@@ -39,6 +39,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+        <dependency>
             <groupId>es.upsa.dasi</groupId>
             <artifactId>domain</artifactId>
             <version>1.0.0</version>
