@@ -3,7 +3,7 @@ services:
   database:
     image: postgres:18
     environment:
-      POSTGRES_DB: upsa
+      POSTGRES_DB: postgres
       POSTGRES_USER: system
       POSTGRES_PASSWORD: manager
       PGDATA: /var/lib/postgresql/18/docker
@@ -15,7 +15,7 @@ services:
       - -c
       - max_prepared_transactions=100
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U system -d upsa" ]
+      test: [ "CMD-SHELL", "pg_isready -U system -d postgres" ]
       interval: 5s
       timeout: 3s
       retries: 3
@@ -35,3 +35,7 @@ services:
     depends_on:
       database:
         condition: service_healthy
+
+volumes:
+  vol_database: {}
+
