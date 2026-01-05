@@ -1,0 +1,10 @@
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H001', 'Hotel Paraíso', 'Barcelona', 5, 'Un hotel de lujo con vistas al mar.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H002', 'Hotel Central', 'Madrid', 4, 'Hotel céntrico con fácil acceso al transporte público.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H003', 'Hotel Costa Azul', 'Valencia', 3, 'Hotel económico cerca de la playa.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H004', 'Hotel Sierra', 'Granada', 5, 'Lujo en la montaña con vistas espectaculares.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H005', 'Hotel Moderno', 'Sevilla', 4, 'Hotel moderno en el centro histórico.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H006', 'Hotel Playa Dorada', 'Málaga', 5, 'Resort de lujo frente al mar.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H007', 'Hotel Bosque Encantado', 'Oviedo', 3, 'Hotel rústico rodeado de naturaleza.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H008', 'Hotel Urbano', 'Bilbao', 4, 'Hotel boutique en el corazón de la ciudad.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H009', 'Hotel Vista Mar', 'San Sebastián', 5, 'Hotel con vistas espectaculares al mar.');
+INSERT INTO HOTELES(ID, NOMBRE, CIUDAD, ESTRELLAS, DESCRIPCION) VALUES('H010', 'Hotel Histórico', 'Toledo', 4, 'Hotel en un edificio histórico con encanto.');
