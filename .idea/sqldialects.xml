@@ -2,14 +2,14 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql/database.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/ws-clientes/flyway/V1.0.0__Crear tabla Clientes.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-clientes/flyway/V1.0.1__Crear secuencia seq_clientes.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-clientes/flyway/V1.0.2__Insertar registros clientes.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-habitaciones/flyway/V1.0.0__Crear tabla Habitaciones.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-habitaciones/flyway/V1.0.1__Crear secuencia seq_habitaciones.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-habitaciones/flyway/V1.0.2__Insertar registros habitaciones.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-reservas/flyway/V1.0.0__Crear tabla Reservas.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-reservas/flyway/V1.0.1__Crear secuencia seq_reservas.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/ws-reservas/flyway/V1.0.2__Insertar registros reservas.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-clientes/flyway/V3.0.0__Crear tabla Clientes.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-clientes/flyway/V3.0.1__Crear secuencia seq_clientes.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-clientes/flyway/V3.0.2__Insertar registros clientes.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-habitaciones/flyway/V2.0.0__Crear tabla Habitaciones.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-habitaciones/flyway/V2.0.1__Crear secuencia seq_habitaciones.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-habitaciones/flyway/V2.0.2__Insertar registros habitaciones.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-reservas/flyway/V4.0.0__Crear tabla Reservas.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-reservas/flyway/V4.0.1__Crear secuencia seq_reservas.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/ws-reservas/flyway/V4.0.2__Insertar registros reservas.sql" dialect="GenericSQL" />
   </component>
 </project>

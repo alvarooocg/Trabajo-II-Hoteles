@@ -23,6 +23,7 @@
         <module>domain</module>
         <module>gateway</module>
         <module>web</module>
+        <module>aggregator</module>
     </modules>
 
 </project>

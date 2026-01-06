@@ -13,7 +13,7 @@ public class AggregatorResponseExceptionMapper implements ResponseExceptionMappe
     public HotelesAppException toThrowable(Response response) {
         return  switch ( response.getStatusInfo().toEnum() )
         {
-            case NOT_FOUND ->  new HotelNotFoundAppException(  response.readEntity(ErrorDto.class).getMessage()   );
+            case NOT_FOUND ->  new HotelNotFoundAppException();
 
 
             default -> {
