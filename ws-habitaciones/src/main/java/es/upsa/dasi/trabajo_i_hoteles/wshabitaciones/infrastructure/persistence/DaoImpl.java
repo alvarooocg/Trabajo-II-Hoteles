@@ -184,6 +184,45 @@ public class DaoImpl implements Dao
         }
     }
 
+    @Override
+    public List<Habitacion> findByHotelId(String hotelId) throws HotelesAppException {
+        String sql = """
+                SELECT id, id_hotel, numero, tipo, precio, disponible
+                FROM HABITACIONES
+                WHERE ID_HOTEL = ?
+                """;
+
+        List<Habitacion> habitaciones = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, hotelId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Habitacion habitacion = Habitacion.builder()
+                            .withId(rs.getString(1))
+                            .withId_hotel(rs.getString(2))
+                            .withNumero(rs.getString(3))
+                            .withTipo(rs.getString(4))
+                            .withPrecio(rs.getDouble(5))
+                            .withDisponible(rs.getBoolean(6))
+                            .build();
+
+                    habitaciones.add(habitacion);
+                }
+            }
+
+            return habitaciones;
+
+        } catch (SQLException e) {
+            throw new HotelesAppException("Error al buscar habitaciones por hotel ID: " + e.getMessage());
+        }
+    }
+
+
+
     private Habitacion toHabitacion (ResultSet resultSet) throws SQLException
     {
         return Habitacion.builder()

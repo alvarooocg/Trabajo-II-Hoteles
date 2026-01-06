@@ -3,10 +3,58 @@
   <component name="QuarkusDeploymentProjectService">
     <option name="modules">
       <map>
+        <entry key="aggregator">
+          <value>
+            <ModuleState>
+              <option name="hash" value="2022802824" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
+        <entry key="gateway">
+          <value>
+            <ModuleState>
+              <option name="hash" value="337762425" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
+        <entry key="shared-quarkus">
+          <value>
+            <ModuleState>
+              <option name="hash" value="33190137" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
         <entry key="ws-clientes">
           <value>
             <ModuleState>
-              <option name="hash" value="566563626" />
+              <option name="hash" value="359693463" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
+        <entry key="ws-habitaciones">
+          <value>
+            <ModuleState>
+              <option name="hash" value="359693463" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
+        <entry key="ws-hoteles">
+          <value>
+            <ModuleState>
+              <option name="hash" value="359693463" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
+        <entry key="ws-reservas">
+          <value>
+            <ModuleState>
+              <option name="hash" value="359693463" />
               <option name="version" value="1" />
             </ModuleState>
           </value>

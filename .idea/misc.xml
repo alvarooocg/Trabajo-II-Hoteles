@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Quarkus" url="file://$PROJECT_DIR$/aggregator" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/gateway" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/shared-quarkus" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/web2" />
@@ -17,6 +18,7 @@
         <option value="$PROJECT_DIR$/web/pom.xml" />
         <option value="$PROJECT_DIR$/ws-habitaciones/pom.xml" />
         <option value="$PROJECT_DIR$/web2/pom.xml" />
+        <option value="$PROJECT_DIR$/aggregator/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -25,5 +27,5 @@
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK" />
 </project>

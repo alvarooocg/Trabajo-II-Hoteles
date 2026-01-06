@@ -46,4 +46,9 @@ public class RepositoryImpl implements Repository
     {
         dao.deleteById(id);
     }
+
+    @Override
+    public List<Habitacion> findByHotelId(String hotelId) throws HotelesAppException {
+        return dao.findByHotelId(hotelId);
+    }
 }

@@ -9,6 +9,7 @@
         <module name="ws-clientes" />
         <module name="web" />
         <module name="domain" />
+        <module name="aggregator" />
         <module name="ws-hoteles" />
         <module name="ws-habitaciones" />
         <module name="shared-quarkus" />
@@ -22,6 +23,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="aggregator" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="hoteles" options="-parameters" />
       <module name="shared-quarkus" options="-parameters" />

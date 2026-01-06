@@ -13,4 +13,5 @@ public interface Repository
     Optional<Habitacion> findById(String id) throws HotelesAppException;
     Habitacion save(Habitacion habitacion) throws HotelesAppException;
     void removeById(String id) throws HotelesAppException;
+    List<Habitacion> findByHotelId(String hotelId) throws HotelesAppException;
 }

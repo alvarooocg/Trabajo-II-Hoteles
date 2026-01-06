@@ -1,4 +1,4 @@
-    DROP TABLE reservas;
+DROP TABLE reservas;
 DROP TABLE habitaciones;
 DROP TABLE clientes;
 DROP TABLE hoteles;

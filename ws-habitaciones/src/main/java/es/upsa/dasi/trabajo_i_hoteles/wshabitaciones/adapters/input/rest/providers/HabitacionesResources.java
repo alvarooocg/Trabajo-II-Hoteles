@@ -37,6 +37,9 @@ public class HabitacionesResources
     @Inject
     RemoveHabitacionByIdUseCase removeHabitacionByIdUseCase;
 
+    @Inject
+    GetHabitacionesByHotelIdUseCase getHabitacionesByHotelIdUseCase;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll(@DefaultValue("") @QueryParam("ids") List<String> ids) throws HotelesAppException
@@ -85,6 +88,15 @@ public class HabitacionesResources
         return Response.noContent()
                 .build();
     }
+
+    @Path("/hoteles/{hotelId}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findByHotelId(@PathParam("hotelId") String hotelId) throws HotelesAppException {
+        List<Habitacion> habitaciones = getHabitacionesByHotelIdUseCase.execute(hotelId);
+        return Response.ok().entity(habitaciones).build();
+    }
+
 
     private URI createPersonaURI(UriInfo uriInfo, Habitacion habitacion)
     {

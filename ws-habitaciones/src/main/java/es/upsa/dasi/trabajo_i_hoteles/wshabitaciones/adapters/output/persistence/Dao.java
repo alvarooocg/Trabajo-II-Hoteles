@@ -14,4 +14,5 @@ public interface Dao
     Habitacion insert(Habitacion habitacion) throws HotelesAppException;
     Optional<Habitacion> update(Habitacion habitacion) throws HotelesAppException;
     void deleteById(String id) throws HotelesAppException;
+    public List<Habitacion> findByHotelId(String hotelId) throws HotelesAppException;
 }
