@@ -46,8 +46,6 @@ services:
     build:
       context: ./ws-hoteles
       dockerfile: Dockerfile
-    ports:
-      - 8081:8080
     environment:
       DATABASE_HOST: database
       DATABASE_PORT: 5432
@@ -62,8 +60,6 @@ services:
     build:
       context: ./ws-clientes
       dockerfile: Dockerfile
-    ports:
-      - 8082:8080
     environment:
       DATABASE_HOST: database
       DATABASE_PORT: 5432
@@ -78,8 +74,6 @@ services:
     build:
       context: ./ws-habitaciones
       dockerfile: Dockerfile
-    ports:
-      - 8083:8080
     environment:
       DATABASE_HOST: database
       DATABASE_PORT: 5432
@@ -94,8 +88,6 @@ services:
     build:
       context: ./ws-reservas
       dockerfile: Dockerfile
-    ports:
-      - 8084:8080
     environment:
       DATABASE_HOST: database
       DATABASE_PORT: 5432
@@ -110,17 +102,34 @@ services:
     build:
       context: ./aggregator
       dockerfile: Dockerfile
-    ports:
-      - 8085:8080
     environment:
       DATABASE_HOST: database
       DATABASE_PORT: 5432
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+      SERVICE_HOTELES_URL: http://ws-hoteles:8080
+      SERVICE_HABITACIONES_URL: http://ws-habitaciones:8080
     depends_on:
       flyway:
         condition: service_completed_successfully
+      ws-hoteles:
+         condition: service_started
+      ws-habitaciones:
+         condition: service_started
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - ws-clientes
+      - ws-habitaciones
+      - ws-hoteles
+      - ws-reservas
+      - aggregator
 
 volumes:
   vol_database: {}
