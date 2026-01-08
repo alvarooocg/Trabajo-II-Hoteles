@@ -138,9 +138,9 @@ services:
       flyway:
         condition: service_completed_successfully
       ws-hoteles:
-         condition: service_started
+         condition: service_healthy
       ws-habitaciones:
-         condition: service_started
+         condition: service_healthy
 
   nginx:
     image: nginx
