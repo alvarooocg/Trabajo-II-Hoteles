@@ -52,6 +52,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -66,6 +72,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -80,6 +92,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -94,6 +112,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
