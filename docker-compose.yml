@@ -52,6 +52,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -66,6 +72,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -80,6 +92,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -94,6 +112,12 @@ services:
       DATABASE_NAME: upsa
       DATABASE_USERNAME: system
       DATABASE_PASSWORD: manager
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/q/health/ready" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -103,20 +127,15 @@ services:
       context: ./aggregator
       dockerfile: Dockerfile
     environment:
-      DATABASE_HOST: database
-      DATABASE_PORT: 5432
-      DATABASE_NAME: upsa
-      DATABASE_USERNAME: system
-      DATABASE_PASSWORD: manager
       SERVICE_HOTELES_URL: http://ws-hoteles:8080
       SERVICE_HABITACIONES_URL: http://ws-habitaciones:8080
     depends_on:
       flyway:
         condition: service_completed_successfully
       ws-hoteles:
-         condition: service_started
+         condition: service_healthy
       ws-habitaciones:
-         condition: service_started
+         condition: service_healthy
 
   nginx:
     image: nginx

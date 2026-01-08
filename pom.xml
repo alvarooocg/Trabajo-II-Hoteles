@@ -19,6 +19,7 @@
         <module>ws-hoteles</module>
         <module>ws-clientes</module>
         <module>ws-reservas</module>
+        <module>ws-habitaciones</module>
         <module>shared-quarkus</module>
         <module>domain</module>
         <module>gateway</module>
