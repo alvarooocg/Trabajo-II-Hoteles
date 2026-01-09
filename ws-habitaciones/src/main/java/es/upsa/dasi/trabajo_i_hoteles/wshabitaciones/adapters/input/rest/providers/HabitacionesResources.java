@@ -42,7 +42,7 @@ public class HabitacionesResources
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findAll(@DefaultValue("") @QueryParam("ids") List<String> ids) throws HotelesAppException
+    public Response findAll( @QueryParam("ids") List<String> ids) throws HotelesAppException
     {
         List<Habitacion> habitaciones = (ids.isEmpty())? getHabitacionesUseCase.execute() : getHabitacionesByIdsUseCase.execute(ids);
         return Response.ok().entity(habitaciones).build();

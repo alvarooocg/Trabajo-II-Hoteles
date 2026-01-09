@@ -6,7 +6,7 @@
         <entry key="aggregator">
           <value>
             <ModuleState>
-              <option name="hash" value="-940057555" />
+              <option name="hash" value="929667242" />
               <option name="version" value="1" />
             </ModuleState>
           </value>
@@ -30,7 +30,7 @@
         <entry key="ws-clientes">
           <value>
             <ModuleState>
-              <option name="hash" value="212143964" />
+              <option name="hash" value="1654457594" />
               <option name="version" value="1" />
             </ModuleState>
           </value>
@@ -38,7 +38,7 @@
         <entry key="ws-habitaciones">
           <value>
             <ModuleState>
-              <option name="hash" value="212143964" />
+              <option name="hash" value="566563626" />
               <option name="version" value="1" />
             </ModuleState>
           </value>
@@ -46,7 +46,7 @@
         <entry key="ws-hoteles">
           <value>
             <ModuleState>
-              <option name="hash" value="212143964" />
+              <option name="hash" value="1654457594" />
               <option name="version" value="1" />
             </ModuleState>
           </value>
@@ -54,7 +54,7 @@
         <entry key="ws-reservas">
           <value>
             <ModuleState>
-              <option name="hash" value="212143964" />
+              <option name="hash" value="1654457594" />
               <option name="version" value="1" />
             </ModuleState>
           </value>
